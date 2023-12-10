@@ -17,3 +17,10 @@ after_success:
   - docker build -t ssedaghati/multi-nginx ./nginx
   - docker build -t ssedaghati/multi-server ./server
   - docker build -t ssedaghati/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push ssedaghati/multi-client
+  - docker push ssedaghati/multi-nginx
+  - docker push ssedaghati/multi-server
+  - docker push ssedaghati/multi-worker
